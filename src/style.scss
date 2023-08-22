@@ -1,0 +1,29 @@
+// Import Bootstrap and its default variables
+@import '~bootstrap/scss/bootstrap.scss';
+// Override default variables before the import
+$body-bg: #000;
+
+h1,
+p {
+  font-family: Lato;
+}
+ .container{
+   height: 100vh;
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+ }
+
+
+  #time-left{
+    border: 2px solid rgb(0, 0, 0, 0.5);
+    width: 100px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+
