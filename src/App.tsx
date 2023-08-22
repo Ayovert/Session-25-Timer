@@ -3,13 +3,13 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import './style.scss';
 
-const downTime = +new Date().getTime() + 25 * 60 * 1000;
+const downTime = +new Date().getTime() + 1 * 60 * 1000;
 export default function App() {
   // const [currentTime, setCurrentTime] = useState();
 
   const [timeLeft, setTimeLeft] = useState({
-    minutes: new Date().getMinutes(),
-    seconds: new Date().getSeconds(),
+    minutes: Math.floor((1000 % (1000 * 60 * 60)) / (1000 * 60)),
+    seconds: Math.floor((1000 % (1000 * 60)) / 1000),
   });
 
   const calculateTimeLeft = () => {
@@ -23,9 +23,15 @@ export default function App() {
     });
   };
 
+  const startTimer = () => {
+    setTimeout(() => {
+      calculateTimeLeft();
+    }, 1000);
+  };
+
   useEffect(() => {
     let timer: any;
-    if (timeLeft.seconds > 0) {
+    if (timeLeft.seconds > 0 || timeLeft.minutes > 0) {
       timer = setTimeout(() => {
         calculateTimeLeft();
       }, 1000);
