@@ -15,52 +15,49 @@ export default function App() {
   });
 
   const calculateTimeLeft = () => {
-    const now = 1000;
-    const diff = downTime - 1000;
-
-    //console.log((diff % (1000 * 60 * 60)) / (1000 * 60))
-
-   /*let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-   let seconds = Math.floor((diff%(1000*60)) / 1000);*/
+    
+  const diff = downTime - 1000;
 
    let minutes = Math.floor((diff / 1000 / 60) % 60);
    let seconds = Math.floor((diff / 1000) % 60);
-   
+
    let downTimeY = ((minutes + (seconds/60)) * 60 * 1000);
 
 
     setTimeLeft({
       minutes: minutes,
       seconds: seconds
-    });
+    }
+    );
 
     setDownTime(downTimeY);
   };
 
   function startTime(){
+
     setTimerId(setTimeout(() => {
       calculateTimeLeft();
     }, 1000));
+
   }
 
 
   function stopTimer(){
     
+
     clearTimeout(timerId);
     setTimerId(0);
     calculateTimeLeft();
+
     
   }
   useEffect(() => {
-    let timer: any;
+ 
     if (timerId > 0) {
       setTimerId(setTimeout(() => {
         calculateTimeLeft();
       }, 1000));
     }
-
-   // console.log(timer);
-
 
     return () => {
       clearTimeout(timerId);
@@ -68,9 +65,7 @@ export default function App() {
   }, [timeLeft]);
 
   // console.log(timeLeft);
-//console.log(((23*60*1000) % (1000 * 60 * 60)) / (1000 * 60))
 
-//console.log(downTime);
   return (
     <div className="container">
       <h1>Session 25 Timer</h1>
@@ -87,3 +82,8 @@ export default function App() {
     </div>
   );
 }
+
+
+
+/*let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+   let seconds = Math.floor((diff%(1000*60)) / 1000);*/
