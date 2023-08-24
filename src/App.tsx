@@ -3,60 +3,74 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import './style.scss';
 
-const downTimeX = (25*60*1000);
+const downTimeX = 25 * 60 * 1000;
 export default function App() {
   const [timerId, setTimerId] = useState(0);
-  const [downTime, setDownTime] = useState(downTimeX);
-
-
+  const [sessionLength, setSessionLength] = useState(1);
   const [timeLeft, setTimeLeft] = useState({
-    minutes: 25,
-    seconds: 0
+    minutes: sessionLength,
+    seconds: 0,
   });
 
-  const calculateTimeLeft = () => {
-    
-  const diff = downTime - 1000;
+  const [breakLength, setBreakLength] = useState(5);
+  const [breakTime, setBreakTime] = useState({
+    minutes: breakLength,
+    seconds: 0,
+  });
 
-   let minutes = Math.floor((diff / 1000 / 60) % 60);
-   let seconds = Math.floor((diff / 1000) % 60);
+  const [isBreak, setIsBreak] = useState(false);
 
-   let downTimeY = ((minutes + (seconds/60)) * 60 * 1000);
+  const sessionTimeLeft = () => {
+    const downTime = timeLeft.minutes + timeLeft.seconds / 60;
 
+    const diff = downTime * 60 - 1;
+
+    let minutes = Math.floor((diff / 60) % 60);
+    let seconds = Math.floor(diff % 60);
 
     setTimeLeft({
       minutes: minutes,
-      seconds: seconds
-    }
-    );
+      seconds: seconds,
+    });
 
-    setDownTime(downTimeY);
+    if (diff < 1) {
+      setIsBreak(true);
+    }
+  };
+  const breakTimeOP = () => {
+    const downTime = breakTime.minutes + breakTime.seconds / 60;
+    const diff = downTime * 60 - 1;
+
+    let minutes = Math.floor((diff / 60) % 60);
+    let seconds = Math.floor(diff % 60);
+
+    setBreakTime({
+      minutes: minutes,
+      seconds: seconds,
+    });
   };
 
-  function startTime(){
-
-    setTimerId(setTimeout(() => {
-      calculateTimeLeft();
-    }, 1000));
-
+  function startTime() {
+    setTimerId(
+      setTimeout(() => {
+        isBreak ? breakTimeOP() : sessionTimeLeft();
+      }, 1000)
+    );
   }
 
-
-  function stopTimer(){
-    
-
+  function stopTimer() {
     clearTimeout(timerId);
     setTimerId(0);
-    calculateTimeLeft();
-
-    
+    sessionTimeLeft();
   }
+
+  const padNum = (num) => {
+    return num < 10 ? `0${num}` : num;
+  };
+
   useEffect(() => {
- 
     if (timerId > 0) {
-      setTimerId(setTimeout(() => {
-        calculateTimeLeft();
-      }, 1000));
+      startTime();
     }
 
     return () => {
@@ -71,10 +85,15 @@ export default function App() {
       <h1>Session 25 Timer</h1>
       <p>Click play to start the clock:)</p>
 
-      <div id="time-left" onClick={() => startTime()}>
-        {timeLeft.minutes} : {timeLeft.seconds}
-      </div>
+      <div id="session_div">
+        <div id="time-left">
+          {padNum(breakTime.minutes)} :{padNum(breakTime.seconds)}
+        </div>
 
+        <div id="time-left" onClick={() => startTime()}>
+          {padNum(timeLeft.minutes)} :{padNum(timeLeft.seconds)}
+        </div>
+      </div>
 
       <div id="stop" onClick={() => stopTimer()}>
         STOP
@@ -82,8 +101,6 @@ export default function App() {
     </div>
   );
 }
-
-
 
 /*let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
    let seconds = Math.floor((diff%(1000*60)) / 1000);*/

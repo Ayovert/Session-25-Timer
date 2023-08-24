@@ -16,6 +16,11 @@ p {
    justify-content: center;
  }
 
+ #session_div{
+   display: flex;
+   justify-content: space-around;
+   gap: 10px;
+ }
 
   #time-left{
     border: 2px solid rgb(0, 0, 0, 0.5);
