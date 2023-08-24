@@ -12,7 +12,7 @@ export default function App() {
     seconds: 0,
   });
 
-  const [breakLength, setBreakLength] = useState(5);
+  const [breakLength, setBreakLength] = useState(1);
   const [breakTime, setBreakTime] = useState({
     minutes: breakLength,
     seconds: 0,
@@ -35,6 +35,10 @@ export default function App() {
 
     if (diff < 1) {
       setIsBreak(true);
+      setTimeLeft({
+        minutes: sessionLength,
+        seconds: 0,
+      });
     }
   };
   const breakTimeOP = () => {
@@ -48,6 +52,15 @@ export default function App() {
       minutes: minutes,
       seconds: seconds,
     });
+
+
+    if (diff < 1) {
+      setIsBreak(false);
+      setBreakTime({
+        minutes: breakLength,
+        seconds: 0,
+      });
+    }
   };
 
   function startTime() {
@@ -76,7 +89,7 @@ export default function App() {
     return () => {
       clearTimeout(timerId);
     };
-  }, [timeLeft]);
+  }, [timeLeft,breakTime]);
 
   // console.log(timeLeft);
 
