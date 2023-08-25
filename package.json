@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.2",
+    "@fortawesome/free-solid-svg-icons": "^6.4.2",
+    "@fortawesome/react-fontawesome": "latest",
     "@popperjs/core": "^2.11.8",
     "@types/react": "18.2.20",
     "@types/react-dom": "18.2.7",

@@ -1,6 +1,10 @@
+import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { padNum } from './data';
+
 import './style.scss';
 
 const downTimeX = 25 * 60 * 1000;
@@ -74,12 +78,9 @@ export default function App() {
   function stopTimer() {
     clearTimeout(timerId);
     setTimerId(0);
-    sessionTimeLeft();
   }
 
-  const padNum = (num) => {
-    return num < 10 ? `0${num}` : num;
-  };
+ 
 
   useEffect(() => {
     if (timerId > 0) {
@@ -98,12 +99,36 @@ export default function App() {
       <h1>Session 25 Timer</h1>
       <p>Click play to start the clock:)</p>
 
-      <div id="session_div">
-        <div id="time-left">
+<div id="lengthDiv">
+
+<div id="length-control">
+    <div id="break-label">
+          Break Length
+        </div>
+
+        <div id="break-length">
+        <FontAwesomeIcon icon={faArrowUp} /> {`    ${breakLength}    `} <FontAwesomeIcon icon={faArrowDown} />
+        </div>
+    </div>
+    <div id="length-control">
+    <div id="session-label">
+          Session Length
+        </div>
+        <div id="break-length">
+        <FontAwesomeIcon icon={faArrowUp} /> {`    ${sessionLength}    `} <FontAwesomeIcon icon={faArrowDown} />
+        </div>
+      </div>
+</div>
+    
+
+        
+    
+      <div id="session_div" onClick={() => startTime()}>
+        <div id="time-left" >
           {padNum(breakTime.minutes)} :{padNum(breakTime.seconds)}
         </div>
 
-        <div id="time-left" onClick={() => startTime()}>
+        <div id="time-left" >
           {padNum(timeLeft.minutes)} :{padNum(timeLeft.seconds)}
         </div>
       </div>
@@ -115,5 +140,8 @@ export default function App() {
   );
 }
 
-/*let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-   let seconds = Math.floor((diff%(1000*60)) / 1000);*/
+/*
+   
+   
+   <audio id="beep" preload="auto" src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav"></audio>
+   */
