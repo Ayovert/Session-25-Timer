@@ -1,47 +1,56 @@
 // Import Bootstrap and its default variables
 @import '~bootstrap/scss/bootstrap.scss';
+
 // Override default variables before the import
 $body-bg: #000;
 
-h1,
-p {
-  font-family: Lato;
-}
- .container{
-   height: 100vh;
-   width: 100%;
-   
-
-#lengthDiv{
-  display: flex;
-    justify-content: space-around;
-  
-    #length-control{
-      display: inline-block;
-    }
+// Custom font styles
+h1, p {
+  font-family: Lato, sans-serif;
 }
 
+// Main container styles
+.container {
+  height: 100vh;
+  width: 100%;
 
 
 
-   #session_div{
+  #timer-control{
     display: flex;
-    justify-content: space-around;
-    gap: 10px;
-    
-    #time-left{
-     border: 2px solid rgb(0, 0, 0, 0.5);
-     width: 100px;
-     height: 50px;
-     display: flex;
-     align-items: center;
-     justify-content: center;
-   }
+  justify-content: space-around;
+
+  margin: 20px 10px;
   }
- }
+}
 
- 
+// Length control styles
+#lengthDiv {
+  display: flex;
+  justify-content: space-around;
 
-  
+  #length-control {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
+    margin: 10px 10px;
+  }
+}
 
+// Session display styles
+#session_div {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+
+  #time-left {
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    width: 100px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
