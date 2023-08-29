@@ -143,37 +143,40 @@ export default function App() {
       <h1>Session 25 Timer</h1>
       <p>Click play to start the clock:)</p>
       <div id="lengthDiv">
-        <div id="length-control">
+        <div id="length-control" >
           <div id="break-label">Break Length</div>
-          <div id="break-length">
-            <FontAwesomeIcon 
-            style={{pointerEvents: disableClick} }
-            icon={faArrowUp} onClick={() => adjustLength('break', 1)} 
+          <div id="break-length" className="frame">
             
-            />
-            {`    ${breakLength}    `}
-            <FontAwesomeIcon 
+
+<span  onClick={() => adjustLength('break', -1)}
             style={{pointerEvents: disableClick} }
-            icon={faArrowDown} 
-            onClick={() => adjustLength('break', -1)} />
+            > - </span>
+           <p> {breakLength}</p>
+            <span  onClick={() => adjustLength('break', 1)}
+            style={{pointerEvents: disableClick} }
+            > + </span>
           </div>
         </div>
-        <div id="length-control">
+        <div id="length-control" >
           <div id="session-label">Session Length</div>
-          <div id="break-length">
-            <FontAwesomeIcon 
+          
+
+          <div id="break-length" className="frame">
+            
+
+            <span  onClick={() => adjustLength('session', -1)}
             style={{pointerEvents: disableClick} }
-            icon={faArrowUp} 
-            onClick={() => adjustLength('session', 1)} />
-            {`    ${sessionLength}    `}
-            <FontAwesomeIcon 
+            > - </span>
+           <p> {sessionLength}</p>
+            <span  onClick={() => adjustLength('session', 1)}
             style={{pointerEvents: disableClick} }
-            icon={faArrowDown} onClick={() => adjustLength('session', -1)} />
+            > + </span>
+            
           </div>
         </div>
       </div>
       <div id="session_div" >
-        <div id="time-left">
+        <div id="time-left" className="frame">
           {padNum(isBreak ? breakTime.minutes : timeLeft.minutes)} : {padNum(isBreak ? breakTime.seconds : timeLeft.seconds)}
         </div>
       </div>
@@ -190,3 +193,17 @@ export default function App() {
 
   
 }
+
+
+/**
+ * <FontAwesomeIcon 
+            style={{pointerEvents: disableClick} }
+            icon={faArrowUp} onClick={() => adjustLength('break', 1)} 
+            
+            />
+            {`    ${breakLength}    `}
+            <FontAwesomeIcon 
+            style={{pointerEvents: disableClick} }
+            icon={faArrowDown} 
+            onClick={() => adjustLength('break', -1)} />
+ */

@@ -2,11 +2,17 @@
 @import '~bootstrap/scss/bootstrap.scss';
 
 // Override default variables before the import
-$body-bg: #000;
+$body-bg: rgb(97, 93, 148);
+$tex-color: rgb(243, 243, 243);
+$hover-color: rgb(243, 243, 243);
 
+body{
+  background-color: $body-bg;
+}
 // Custom font styles
 h1, p {
-  font-family: Lato, sans-serif;
+  font-family: 'Courier New', monospace;
+  color: $tex-color;
 }
 
 // Main container styles
@@ -19,15 +25,42 @@ h1, p {
   #timer-control{
     display: flex;
   justify-content: space-around;
+  align-items: center;
 
   margin: 20px 10px;
+  div{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgb(190, 188, 226);
+    padding: 30px;
+    cursor: pointer;
+
+    
   }
+
+  :hover{
+    color: $tex-color;
+  }
+
+
+  }
+}
+
+.frame{
+  border: 2px solid rgba(0, 0, 0, 0.5);
+    border-radius: 50px;
+    background-color: rgb(190, 188, 226);
 }
 
 // Length control styles
 #lengthDiv {
   display: flex;
   justify-content: space-around;
+  
 
   #length-control {
     display: flex;
@@ -36,6 +69,38 @@ h1, p {
     align-items: center;
 
     margin: 10px 10px;
+
+    #session-label, #break-label{
+      margin: 15px 0px;
+      color: $tex-color;
+    }
+    
+
+    #break-length{
+      border: 3px solid rgb(190, 188, 226);
+     
+
+      p{
+        display: inline-block;
+        margin: 0;
+        border-style: none solid;
+        padding: 10px 10px;
+        background-color: rgb(221, 220, 230);
+        min-width: 45px;
+        text-align: center;
+        color: black;
+      }
+      span{
+        padding: 10px 10px;
+        font-size: 1.5rem;
+        cursor: pointer;
+
+        
+      }
+      span:hover{
+        color: $tex-color;
+      }
+    }
   }
 }
 
@@ -43,14 +108,20 @@ h1, p {
 #session_div {
   display: flex;
   justify-content: space-around;
-  gap: 10px;
+ 
+  font-family: 'Courier New', monospace;
+  
+  font-size: larger;
+  font-weight: 700;
+
+  margin: 50px 10px;
 
   #time-left {
-    border: 2px solid rgba(0, 0, 0, 0.5);
-    width: 100px;
-    height: 50px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 30px;
+    box-shadow: 0px 12px 19px 2px #36273d;
   }
 }
