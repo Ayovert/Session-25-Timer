@@ -35,6 +35,23 @@ export default function App() {
     }
   }
 
+  function playAudio() {
+    const target = document.getElementById("beep") as HTMLMediaElement;
+    
+
+    if (target !== null) {
+      target.load();
+      target.play();
+    }
+  }
+
+
+  if((timeLeft.minutes == 0 && timeLeft.seconds == 0) 
+  || (breakTime.minutes == 0 && breakTime.seconds == 0)){
+
+    console.log("play")
+    playAudio();
+  }
 
 
   const resetTimer = () => {
@@ -78,7 +95,7 @@ export default function App() {
   };
 
   const sessionTimeLeft = () => {
-    console.log(timerId, breakTime)
+   
     const downTime = timeLeft.minutes + timeLeft.seconds / 60;
     const diff = downTime * 60 - 1;
 
@@ -131,7 +148,7 @@ export default function App() {
     setTimerId(0);
   };
 
-
+  
 
   useEffect(() => {
     if (timerId > 0) {
