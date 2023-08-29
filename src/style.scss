@@ -7,7 +7,8 @@ $tex-color: rgb(243, 243, 243);
 $hover-color: rgb(243, 243, 243);
 
 body{
-  background-color: $body-bg;
+  //background-color: $body-bg;
+  background: radial-gradient( #AC90E0 0%, #AC90E0 5%, #6e1c97 82%);
   font-family: 'Courier New', monospace;
   color: $body-bg;
  
@@ -87,7 +88,7 @@ body{
     
 
     #break-length{
-      border: 3px solid rgb(190, 188, 226);
+      border: 1px solid rgb(136, 43, 212);
      
 
       p{
