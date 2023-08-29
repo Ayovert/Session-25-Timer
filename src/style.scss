@@ -2,7 +2,7 @@
 @import '~bootstrap/scss/bootstrap.scss';
 
 // Override default variables before the import
-$body-bg: rgb(97, 93, 148);
+$body-bg: rgb(84, 5, 150);
 $tex-color: rgb(243, 243, 243);
 $hover-color: rgb(243, 243, 243);
 
@@ -89,6 +89,9 @@ body{
 
     #break-length{
       border: 1px solid rgb(136, 43, 212);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
      
 
       p{
@@ -102,7 +105,7 @@ body{
         color: black;
       }
       span{
-        padding: 10px 10px;
+        padding: 0 15px;
         font-size: 1.5rem;
         cursor: pointer;
 
