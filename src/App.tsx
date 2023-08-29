@@ -46,12 +46,7 @@ export default function App() {
   }
 
 
-  if((timeLeft.minutes == 0 && timeLeft.seconds == 0) 
-  || (breakTime.minutes == 0 && breakTime.seconds == 0)){
-
-    console.log("play")
-    playAudio();
-  }
+  
 
 
   const resetTimer = () => {
@@ -108,6 +103,7 @@ export default function App() {
     });
 
     if (diff < 1) {
+      playAudio();
       setIsBreak(true);
       setTimeLeft({
         minutes: sessionLength,
@@ -129,6 +125,7 @@ export default function App() {
     });
 
     if (diff < 1) {
+      playAudio();
       setIsBreak(false);
       setBreakTime({
         minutes: breakLength,
@@ -136,6 +133,7 @@ export default function App() {
       });
     }
   };
+  
 
   const startTime = () => {
     setTimerId(setTimeout(() => {
@@ -154,6 +152,9 @@ export default function App() {
     if (timerId > 0) {
       startTime();
     }
+
+
+  
 
     return () => {
       clearTimeout(timerId);
@@ -200,7 +201,7 @@ export default function App() {
         </div>
       </div>
       <div id="session_div" className="frame"
-        style={{ color: lateTime(timeLeft || breakTime) }}>
+        style={{ color: lateTime(timeLeft ) || lateTime(breakTime)}}>
         <div id="timer-label">
           {isBreak ? "Break" : "Session"}
         </div>
@@ -214,6 +215,8 @@ export default function App() {
         <div id="start_stop" onClick={startTime}>Play</div>
         <div id="reset" onClick={resetTimer}>Reset</div>
       </div>
+
+      
       <audio id="beep" preload="auto" src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav"></audio>
     </div>
   );
