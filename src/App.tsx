@@ -27,7 +27,14 @@ export default function App() {
 
 
 
-  const disableClick = timerId > 0? "none" : "auto";
+  const disableClick = timerId > 0 ? "none" : "auto";
+
+  function lateTime(time) {
+    if (time.minutes < 1 && time.seconds <= 59) {
+      return "red";
+    }
+  }
+
 
 
   const resetTimer = () => {
@@ -36,8 +43,8 @@ export default function App() {
     setSessionLength(MAX_SESSION_LENGTH);
     setBreakLength(MIN_LENGTH);
     setTimeLeft({
-        minutes: MAX_SESSION_LENGTH,
-        seconds: 0,
+      minutes: MAX_SESSION_LENGTH,
+      seconds: 0,
     });
     setBreakTime({
       minutes: MIN_LENGTH,
@@ -124,7 +131,7 @@ export default function App() {
     setTimerId(0);
   };
 
- 
+
 
   useEffect(() => {
     if (timerId > 0) {
@@ -136,8 +143,8 @@ export default function App() {
     };
   }, [timeLeft, breakTime, sessionLength, breakLength]);
 
-  
- 
+
+
   return (
     <div className="container">
       <h1>Session 25 Timer</h1>
@@ -146,56 +153,64 @@ export default function App() {
         <div id="length-control" >
           <div id="break-label">Break Length</div>
           <div id="break-length" className="frame">
-            
 
-<span  onClick={() => adjustLength('break', -1)}
-            style={{pointerEvents: disableClick} }
+
+            <span id="break-decrement" onClick={() => adjustLength('break', -1)}
+              style={{ pointerEvents: disableClick }}
             > - </span>
-           <p> {breakLength}</p>
-            <span  onClick={() => adjustLength('break', 1)}
-            style={{pointerEvents: disableClick} }
+            <p> {breakLength}</p>
+            <span id="break-increment" onClick={() => adjustLength('break', 1)}
+              style={{ pointerEvents: disableClick }}
             > + </span>
           </div>
         </div>
         <div id="length-control" >
           <div id="session-label">Session Length</div>
-          
+
 
           <div id="break-length" className="frame">
-            
 
-            <span  onClick={() => adjustLength('session', -1)}
-            style={{pointerEvents: disableClick} }
+
+            <span id="session-decrement" onClick={() => adjustLength('session', -1)}
+              style={{ pointerEvents: disableClick }}
             > - </span>
-           <p> {sessionLength}</p>
-            <span  onClick={() => adjustLength('session', 1)}
-            style={{pointerEvents: disableClick} }
+            <p> {sessionLength}</p>
+            <span id="session-increment" onClick={() => adjustLength('session', 1)}
+              style={{ pointerEvents: disableClick }}
             > + </span>
-            
+
           </div>
         </div>
       </div>
-      <div id="session_div" >
-        <div id="time-left" className="frame">
+      <div id="session_div" className="frame"
+        style={{ color: lateTime(timeLeft || breakTime) }}>
+        <div id="timer-label">
+          {isBreak ? "Break" : "Session"}
+        </div>
+        <div id="time-left"  >
           {padNum(isBreak ? breakTime.minutes : timeLeft.minutes)} : {padNum(isBreak ? breakTime.seconds : timeLeft.seconds)}
         </div>
       </div>
 
-      <div id="timer-control"> 
-      <div id="pause" onClick={pauseTimer}>Pause</div>
-      <div id="play" onClick={startTime}>Play</div>
-      <div id="reset" onClick={resetTimer}>Reset</div>
+      <div id="timer-control">
+        <div id="start_stop" onClick={pauseTimer}>Pause</div>
+        <div id="start_stop" onClick={startTime}>Play</div>
+        <div id="reset" onClick={resetTimer}>Reset</div>
       </div>
-      
+      <audio id="beep" preload="auto" src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav"></audio>
     </div>
   );
 
 
-  
+
 }
 
 
 /**
+ * 
+ * TO- DO---
+ * 1. When it gets to 00: 00 , play audio
+ * 2. When it gets to 01:00 , turn timer red
  * <FontAwesomeIcon 
             style={{pointerEvents: disableClick} }
             icon={faArrowUp} onClick={() => adjustLength('break', 1)} 

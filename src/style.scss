@@ -11,6 +11,7 @@ body{
   background: radial-gradient( #AC90E0 0%, #AC90E0 5%, #6e1c97 82%);
   font-family: 'Courier New', monospace;
   color: $body-bg;
+  font-weight: 700;
  
 
 }
@@ -28,6 +29,7 @@ body{
 
   h1, p{
     color: $tex-color;
+    
   }
 
 
@@ -120,22 +122,25 @@ body{
 
 // Session display styles
 #session_div {
-  display: flex;
-  justify-content: space-around;
+ 
  
   font-family: 'Courier New', monospace;
   
-  font-size: larger;
-  font-weight: 700;
+  font-size: 1.2rem;
+ 
 
   margin: 50px 10px;
 
-  #time-left {
+  width: 250px;
 
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 30px;
     box-shadow: 0px 12px 19px 2px #36273d;
+
+  #time-left {
+    font-size: 2rem;
   }
 }
