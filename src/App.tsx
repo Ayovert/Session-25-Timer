@@ -1,6 +1,6 @@
 //Refactored by Chat GPT
 
-import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { faArrowDown, faArrowsRotate, faArrowUp, faPause, faPlay } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState, useEffect } from 'react';
 import { padNum } from './data';
@@ -211,9 +211,9 @@ export default function App() {
       </div>
 
       <div id="timer-control">
-        <div id="start_stop" onClick={pauseTimer}>Pause</div>
-        <div id="start_stop" onClick={startTime}>Play</div>
-        <div id="reset" onClick={resetTimer}>Reset</div>
+        <div id="start_stop" onClick={pauseTimer}><FontAwesomeIcon icon={faPause} /></div>
+        <div id="start_stop" onClick={startTime}><FontAwesomeIcon icon={faPlay} /></div>
+        <div id="reset" onClick={resetTimer}><FontAwesomeIcon icon={faArrowsRotate} /></div>
       </div>
 
       
